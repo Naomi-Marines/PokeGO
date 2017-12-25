@@ -10,6 +10,8 @@ Para más detalle de la charla, revisa la presentación.
 
 Algunas gráficas generadas se presentan a continuación:
 
-<img src="" width="50%"><img src="" width="50%">
+<img src="https://github.com/RodolfoFerro/PokeGO/blob/master/imgs/fig_1.png" width="50%"><img src="https://github.com/RodolfoFerro/PokeGO/blob/master/imgs/fig_2.png" width="50%">
 
-<img src="" width="50%"><img src="" width="50%">
+<img src="https://github.com/RodolfoFerro/PokeGO/blob/master/imgs/fig_3.png" width="50%"><img src="https://github.com/RodolfoFerro/PokeGO/blob/master/imgs/fig_4.png" width="50%">
+
+<img src="https://github.com/RodolfoFerro/PokeGO/blob/master/imgs/fig_5.png" width="50%">
