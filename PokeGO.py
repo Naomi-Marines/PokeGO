@@ -33,7 +33,7 @@ plt.ylabel("Frecuencia de tiempos")
 
 
 # PASO 2 - Proponemos un modelo.
-dist_name = 'dweibull'
+dist_name = 'weibull_min'
 
 
 # PASO 3 - Estimamos parámetros.
@@ -46,8 +46,8 @@ plt.figure(2)
 plt.plot(pdf_fitted, label=dist_name)
 plt.title("Función de densidad ajustada")
 plt.xlim(0, breaks)
-print(param)
-# plt.show()
+print("Parámetros obtenidos: {}".format(param))
+plt.show()
 
 
 # PASO 4 - Validamos nuestro modelo.
