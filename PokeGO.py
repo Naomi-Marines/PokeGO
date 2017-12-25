@@ -19,6 +19,7 @@ tiempos = np.array([2.50, 4.93, 5.01, 1.11, 4.93, 3.51,
                     3.86, 0.75, 0.48, 1.53, 0.48, 1.18,
                     1.25, 2.78, 0.66, 5.36, 0.05, 2.13,
                     0.25, 2.28, 5.88, 18.45])
+tiempos = sorted(tiempos)
 
 
 # PASO 1 - Creamos histograma.
@@ -42,6 +43,7 @@ dist_name = 'weibull_min'
 dist = getattr(st, dist_name)
 param = dist.fit(tiempos)
 pdf_fitted = dist.pdf(x, *param[:-2], loc=param[-2], scale=param[-1])
+cdf_fitted = dist.cdf(x, *param[:-2], loc=param[-2], scale=param[-1])
 print("Parámetros obtenidos: {}".format(param))
 
 
@@ -52,6 +54,12 @@ def ecdf(x):
     ys = np.arange(1, len(xs)+1)/float(len(xs))
     return xs, ys
 
+
+x_cdf, y_cdf = ecdf(tiempos)
+plt.figure(2)
+plt.plot(x, cdf_fitted, label="FDT")
+plt.plot(x_cdf, y_cdf, label="FDE")
+# plt.show()
 
 # Gráfica cuantil-cuantil:
 
