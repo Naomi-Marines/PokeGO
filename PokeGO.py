@@ -23,6 +23,7 @@ tiempos = np.array([2.50, 4.93, 5.01, 1.11, 4.93, 3.51,
 
 # PASO 1 - Creamos histograma.
 breaks = 20
+x = np.linspace(0.5, breaks, 1000)
 plt.figure(1)
 plt.hist(tiempos, breaks, normed=True, facecolor='blue',
          alpha=0.75, ec='white', label="Histograma de tiempos")
@@ -40,22 +41,28 @@ dist_name = 'weibull_min'
 # Estimador de parámetros:
 dist = getattr(st, dist_name)
 param = dist.fit(tiempos)
-pdf_fitted = dist.pdf(tiempos, *param[:-2], loc=param[-2], scale=param[-1])
-pdf_fitted *= breaks
-plt.figure(2)
-plt.plot(pdf_fitted, label=dist_name)
-plt.title("Función de densidad ajustada")
-plt.xlim(0, breaks)
+pdf_fitted = dist.pdf(x, *param[:-2], loc=param[-2], scale=param[-1])
 print("Parámetros obtenidos: {}".format(param))
-plt.show()
 
 
 # PASO 4 - Validamos nuestro modelo.
 # Función de Distribución Empírica (FDE):
+def ecdf(x):
+    xs = np.sort(x)
+    ys = np.arange(1, len(xs)+1)/float(len(xs))
+    return xs, ys
 
 
 # Gráfica cuantil-cuantil:
+
+
 # Densidad sobre histograma:
+plt.figure(4)
+plt.hist(tiempos, breaks, normed=True, facecolor='blue',
+         alpha=0.75, ec='white', label="Histograma de tiempos")
+plt.plot(x, pdf_fitted)
+plt.title("Histograma de tiempos \nDensidad ajustada")
+plt.show()
 
 # PASO 5 - Simular datos.
 # Validar con nube de puntos:
