@@ -25,7 +25,7 @@ tiempos = sorted(tiempos)
 # PASO 1 - Creamos histograma.
 breaks = 20
 x = np.linspace(0.5, breaks, 1000)
-plt.figure(1)
+plt.figure(1, figsize=(5, 5))
 plt.hist(tiempos, breaks, normed=True, facecolor='blue',
          alpha=0.75, ec='white', label="Histograma de tiempos")
 plt.title("Histograma de tiempos")
@@ -56,23 +56,52 @@ def ecdf(x):
 
 
 x_cdf, y_cdf = ecdf(tiempos)
-plt.figure(2)
+plt.figure(2, figsize=(5, 5))
 plt.plot(x, cdf_fitted, label="FDT")
 plt.plot(x_cdf, y_cdf, label="FDE")
+plt.title("FDE vs FDT")
 # plt.show()
 
 # Gráfica cuantil-cuantil:
-
+N = len(tiempos)
+gen = np.arange(1/(N+1), N/(N+1), 1/(N+1))
+vec = dist.ppf(gen, *param[:-2], loc=param[-2], scale=param[-1])
+plt.figure(3, figsize=(5, 5))
+plt.plot(np.linspace(0, breaks), np.linspace(0, breaks))
+plt.plot(tiempos, vec, ".r")
+plt.title("Gráfica cuantil-cuantil (Q-Q)")
+# plt.show()
 
 # Densidad sobre histograma:
-plt.figure(4)
+plt.figure(4, figsize=(5, 5))
 plt.hist(tiempos, breaks, normed=True, facecolor='blue',
          alpha=0.75, ec='white', label="Histograma de tiempos")
 plt.plot(x, pdf_fitted)
 plt.title("Histograma de tiempos \nDensidad ajustada")
-plt.show()
+# plt.show()
+
 
 # PASO 5 - Simular datos.
 # Validar con nube de puntos:
+unif = np.random.uniform
+plt.figure(5, figsize=(5, 5))
+for sim in range(50):
+    row = dist.ppf(unif(size=N), *param[:-2], loc=param[-2], scale=param[-1])
+    plt.plot(tiempos, sorted(row), ".g")
+plt.plot(np.linspace(0, breaks), np.linspace(0, breaks))
+plt.plot(tiempos, vec, ".r")
+plt.title("Nube de puntos en Q-Q")
+# plt.show()
+
 # Simulamos una muestra de 100 datos:
+n = 100
+datos_unif = np.random.uniform(size=N)
+simulados = dist.ppf(datos_unif, *param[:-2], loc=param[-2], scale=param[-1])
+print("Datos simulados: \n{}".format(simulados))
+
 # Media y suma total:
+print("Media: {}".format(np.mean(simulados)))
+print("Suma total: {}".format(np.sum(simulados)))
+
+# Mostramos todos los plots:
+plt.show()
