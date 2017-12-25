@@ -87,7 +87,7 @@ unif = np.random.uniform
 plt.figure(5, figsize=(5, 5))
 for sim in range(50):
     row = dist.ppf(unif(size=N), *param[:-2], loc=param[-2], scale=param[-1])
-    plt.plot(tiempos, sorted(row), ".g")
+    plt.plot(tiempos, sorted(row), ".y", alpha=0.3)
 plt.plot(np.linspace(0, breaks), np.linspace(0, breaks))
 plt.plot(tiempos, vec, ".r")
 plt.title("Nube de puntos en Q-Q")
