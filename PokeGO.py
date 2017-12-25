@@ -31,6 +31,7 @@ plt.hist(tiempos, breaks, normed=True, facecolor='blue',
 plt.title("Histograma de tiempos")
 plt.xlabel("Tiempos")
 plt.ylabel("Frecuencia de tiempos")
+plt.savefig("imgs/fig_1.png")
 # plt.show()
 
 
@@ -60,6 +61,7 @@ plt.figure(2, figsize=(5, 5))
 plt.plot(x, cdf_fitted, label="FDT")
 plt.plot(x_cdf, y_cdf, label="FDE")
 plt.title("FDE vs FDT")
+plt.savefig("imgs/fig_2.png")
 # plt.show()
 
 # Gráfica cuantil-cuantil:
@@ -70,6 +72,7 @@ plt.figure(3, figsize=(5, 5))
 plt.plot(np.linspace(0, breaks), np.linspace(0, breaks))
 plt.plot(tiempos, vec, ".r")
 plt.title("Gráfica cuantil-cuantil (Q-Q)")
+plt.savefig("imgs/fig_3.png")
 # plt.show()
 
 # Densidad sobre histograma:
@@ -78,6 +81,7 @@ plt.hist(tiempos, breaks, normed=True, facecolor='blue',
          alpha=0.75, ec='white', label="Histograma de tiempos")
 plt.plot(x, pdf_fitted)
 plt.title("Histograma de tiempos \nDensidad ajustada")
+plt.savefig("imgs/fig_4.png")
 # plt.show()
 
 
@@ -91,6 +95,7 @@ for sim in range(50):
 plt.plot(np.linspace(0, breaks), np.linspace(0, breaks))
 plt.plot(tiempos, vec, ".r")
 plt.title("Nube de puntos en Q-Q")
+plt.savefig("imgs/fig_5.png")
 # plt.show()
 
 # Simulamos una muestra de 100 datos:
